@@ -94,7 +94,7 @@ help:
 
 
 clean:	
-	rm -f -- *~ \#* core  filepath filepath.html
+	rm -f -- *~ \#* core  filepath filepath.html doc/*~
 
 distclean:      clean
 	rm -f *.tgz 
