@@ -1,0 +1,155 @@
+.\" Manpage for filepath.
+.\" Contact spikeysnack@gmail.com to correct errors or typos.
+.ft Helvetica
+.TH man 1 "04 Nov 2016" "1.3" "filepath man page"
+
+.SH NAME
+filepath\- get the full path of a file
+
+.SH SYNOPSIS
+\fBfilepath\fP       file 
+
+         	[-w] file
+
+         	[-W] file
+
+		[-h] 
+
+		[-v] 
+
+		
+.SH DESCRIPTION 
+.P
+.TP
+filepath returns the full path of a file. 
+.P
+If the file does not exist it returns nothing.
+.P
+This is useful for shell scripts and resolving soft links 
+
+to the actual file, which may have a different name.
+
+In that case the actual file name is returned.
+
+
+.SH USAGE
+.B filepath [ options ]  file   \fR
+.SH OPTIONS:
+.IP -c
+continue through errors (default:no)
+.IP -d
+delimit output with newline
+.IP -D<string>  
+delimit output with string
+.IP -h
+print help message
+.IP -w
+print numerical error if error occurs
+.IP -W
+print textual   error if error occurs
+.IP -v
+print version and exit
+
+.SH EXAMPLES
+.P
+\fR	       filepath  file1  file2  softlink
+.RS
+		       		 /path/file1 /path/file2 /actual/path/file 
+
+.RE
+
+\fR	       filepath  <nonexistent file>
+.RS
+		       		 (no output)
+.RE
+
+\fR	       filepath  -w <nonexistent file>  
+.RS
+		       		 (no output)
+.RE
+
+\fR	       filepath  -w <nonexistent file> file 
+.RS
+		       		 /path/file
+.RE
+
+\fR	       filepath  -W <file1> <nonexistent file> <file2>  
+.RS
+		       		 /path/file1 No such file or directory (program quits)
+.RE
+
+\fR	       filepath  -W -c file1 <nonexistent file> file2   
+.RS
+		       		 /path/file1 No such file or directory /path/file2 
+.RE
+
+\fR	       filepath /etc/passwd
+.RS
+		       		(no output)
+.RE
+
+\fR 		filepath -w /etc/passwd
+.RS
+		       		13
+.RE
+\fR 		filepath -W /etc/passwd
+.RS 
+		       		access denied
+.RE		       
+
+\fR 		filepath -d *
+.RS
+.RS		       		/path/file1
+.RS		       		/path/file2
+.RS		       		...
+.RE
+				
+\fR 		filepath -D" : "  *
+.RS
+.RS		       		/usr/local/src/file_1 : /usr/local/src/file_2 : /usr/local/src/file_3
+.RE
+.TP
+
+
+.SH FILES
+.TP
+/usr/local/bin/filepath
+.RI
+program binary
+.TP
+.TP
+/usr/local/share/man/man1/filepath.1 
+.RI
+man page for filepath
+.TP
+/usr/local/share/doc/filepath/
+.RI
+documentation for filepath
+.RE
+.SH SEE ALSO
+realpath(3)  
+.SH BUGS
+.P
+.TP
+filepath ignores by default:
+ENOENT (error 2  -- file not found) 
+
+EINVAL (error 22 -- Invalid argument) 
+
+in regular and numerical warning (-w) mode. 
+
+.P
+This is on purpose to help it integrate with shell scripts,
+
+which already have facilities for those condtions.
+
+.P
+
+.SH AUTHOR
+.RS
+Chris Reid (spikeysnack@gmail.com)
+.RE
+.SH COPYRIGHT @2016-2020 freeware, , unrestricted, no warranty
+.RS
+Free for non-commercial use.
+.RE

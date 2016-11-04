@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html><head>
+<title>filepath</title>
+<meta name="description" content="get full path of file" />
+<meta name="keywords" content="path,file" />
+<link rel="stylesheet" type="text/css" href="css/light.css" title="preferred" />
+</head>
+<body>
+
+<div id="content">
+<img src="filepath.png" alt="filepath" style={font-family: Georgia; color: #697c52; font-style: italic; font-size: 30px;}>
+<verdana>
+
+<h3>
+<div align="middle">version:    1.3         date:   4 Nov 2016</div>
+
+<h2>NAME</h2>
+<font size="6" color="brown">filepath</font>
+<blockquote>
+  Get the full path of a file
+</blockquote>
+
+<h2>USAGE</h2>
+<code>
+<font size="4">
+<pre>
+filepath  [ <font color="blue">option(s)</font> ] file
+</pre>
+</font>
+</code>
+<h2>OPTIONS</h2>
+<code> 
+<font size="4" color="blue">
+<pre>
+Options:
+		-c	  continue through errors (default:no)
+
+		-d	  delimit output with newline
+
+                -D<string>        delimit output with string
+
+		-h        print help message
+
+		-w        print numerical error if error occurs
+
+		-W        print textual   error if error occurs
+
+		-v        print version and exit
+
+</pre>
+</font>
+</code> 
+
+<h2>DESCRIPTION</h2><p>
+
+<font color="brown">filepath</font> returns the full path of a file.
+<p>
+If the file does not exist it returns nothing.<br>
+<p>
+This is useful for shell scripts and resolving soft links <br>
+
+to the actual file, which may have a different name.
+<p> 
+
+<h2>EXAMPLES</h2>
+
+<code>
+<pre>
+       filepath  file1  file2   <font color="magenta">softlink</font>
+	       		 <font color="green">/path/file1 /path/file2 /actual/path/file</font> 
+			
+       filepath  <font color="magenta">link</font>
+			 <font color="green">/usr/local/doc/file/file.txt</font>
+
+       filepath  <nonexistent file>
+	       		 (no output)
+
+       filepath  <font color="blue">-w</font> <font color="red">&lt;nonexistent file&gt;</font>  
+	       		 (no output)
+
+       filepath  <font color="blue">-w</font> <font color="red">&lt;nonexistent file&gt;</font> file 
+	       		 <font color="green">/path/file</font>
+
+       filepath  <font color="blue">-W </font>file1 <font color="red">&lt;nonexistent file&gt</font>  file2  
+	       		 <font color="green">/path/file1 No such file or directory</font> (program quits)
+
+       filepath <font color="blue"> -W -c</font> file1 <font color="red">&lt;nonexistent file&gt</font> file2   
+	       		 <font color="green">/path/file1 No such file or directory /path/file2 </font>
+
+       filepath /etc/passwd
+	       		(no output)
+
+       filepath <font color="blue">-w</font> /etc/passwd
+	       		<font color="green">13</font>
+
+       filepath <font color="blue">-W</font> /etc/passwd
+	       		<font color="green">access denied</font>
+		       
+       filepath <font color="blue">-d</font> *
+	       		<font color="green">/path/file1</font>
+	       		/path/file2
+	       		...
+				
+       filepath <font color="blue">-D</font><font color="magenta">" : "</font>  *
+	       		<font color="green">/usr/local/src/file_1 : /usr/local/src/file_2 : /usr/local/src/file_3</font>
+
+</pre>
+</code>
+
+
+
+<h2>FILES</h2>
+<pre>
+       /usr/local/bin/filepath
+              program binary
+
+       /usr/local/share/man/man1/filepath.1
+              man page for filepath
+
+       /usr/local/share/doc/filepath/
+              documentation for filepath
+
+</pre>
+
+<h2>BUGS</h2>
+<pre>
+       <font color="brown">filepath</font> ignores 
+
+              <b>ENOENT</b> (error 2  -- file not found)
+
+              <b>EINVAL</b> (error 22 -- invalid argument)
+
+              in regular and numerical warning (-w) mode.
+<p>
+       This is intentional. It helps  integration with shell scripts.
+
+       Shells have builtin facilities for the above conditions.
+
+</pre>
+
+<h2>COPYRIGHT</h2>
+
+<i>Free for non-commercial use.</i>
+
+
+<h2>AUTHOR</h2><p>
+Chris Reid <a href="mailto:spikeysnack&#64;gmail.com">spikeysnack&#64;gmail.com</a>
+<h2>SEE ALSO</h2>
+<blockquote>
+    realpath(3)
+</div>
+</body>
+</html>
