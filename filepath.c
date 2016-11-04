@@ -19,7 +19,7 @@
 
 
 /* version information */
-const char* filepath_version       = "1.2";
+const char* filepath_version       = "1.3";
 const char* filepath_revision_date = "04 Nov 2016";
 const char* filepath_author        = "Chris Reid <spikeysnack@gmail.com>";
 const char* filepath_license       = "@2016 freeware, unrestricted, no warranty";
