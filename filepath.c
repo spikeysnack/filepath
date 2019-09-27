@@ -63,7 +63,7 @@ char *delim;
 int main( int argc, char** argv , char** env );
 
 inline int options( int argc, char** argv);
-inline int checkerr(const int err, int flags );
+static inline int checkerr(const int err, int flags );
 
 void usage(FILE* f);
 void version(FILE* f);
